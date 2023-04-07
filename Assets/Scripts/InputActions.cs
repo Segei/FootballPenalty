@@ -26,7 +26,7 @@ namespace Assets.Scripts
     ""name"": ""New Controls"",
     ""maps"": [
         {
-            ""name"": ""UI"",
+            ""name"": ""Android"",
             ""id"": ""e918f071-0a0e-4b4b-9a15-08fe9e2f174d"",
             ""actions"": [
                 {
@@ -42,6 +42,15 @@ namespace Assets.Scripts
                     ""name"": ""Touch"",
                     ""type"": ""Button"",
                     ""id"": ""4b67ca14-292b-4007-8413-500041c4310c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""f0691a93-d09b-46cf-b447-8dd0ba75d993"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -70,16 +79,39 @@ namespace Assets.Scripts
                     ""action"": ""Touch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""186ca95b-b44a-4e44-822f-e9223a4f5eb3"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5d875a3d-8605-431b-a4cf-39a9cdf6c01b"",
+                    ""path"": ""*/{Back}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
     ],
     ""controlSchemes"": []
 }");
-            // UI
-            m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-            m_UI_Position = m_UI.FindAction("Position", throwIfNotFound: true);
-            m_UI_Touch = m_UI.FindAction("Touch", throwIfNotFound: true);
+            // Android
+            m_Android = asset.FindActionMap("Android", throwIfNotFound: true);
+            m_Android_Position = m_Android.FindAction("Position", throwIfNotFound: true);
+            m_Android_Touch = m_Android.FindAction("Touch", throwIfNotFound: true);
+            m_Android_Back = m_Android.FindAction("Back", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -136,34 +168,39 @@ namespace Assets.Scripts
             return asset.FindBinding(bindingMask, out action);
         }
 
-        // UI
-        private readonly InputActionMap m_UI;
-        private IUIActions m_UIActionsCallbackInterface;
-        private readonly InputAction m_UI_Position;
-        private readonly InputAction m_UI_Touch;
-        public struct UIActions
+        // Android
+        private readonly InputActionMap m_Android;
+        private IAndroidActions m_AndroidActionsCallbackInterface;
+        private readonly InputAction m_Android_Position;
+        private readonly InputAction m_Android_Touch;
+        private readonly InputAction m_Android_Back;
+        public struct AndroidActions
         {
             private @InputActions m_Wrapper;
-            public UIActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Position => m_Wrapper.m_UI_Position;
-            public InputAction @Touch => m_Wrapper.m_UI_Touch;
-            public InputActionMap Get() { return m_Wrapper.m_UI; }
+            public AndroidActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Position => m_Wrapper.m_Android_Position;
+            public InputAction @Touch => m_Wrapper.m_Android_Touch;
+            public InputAction @Back => m_Wrapper.m_Android_Back;
+            public InputActionMap Get() { return m_Wrapper.m_Android; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
-            public void SetCallbacks(IUIActions instance)
+            public static implicit operator InputActionMap(AndroidActions set) { return set.Get(); }
+            public void SetCallbacks(IAndroidActions instance)
             {
-                if (m_Wrapper.m_UIActionsCallbackInterface != null)
+                if (m_Wrapper.m_AndroidActionsCallbackInterface != null)
                 {
-                    @Position.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPosition;
-                    @Position.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPosition;
-                    @Position.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPosition;
-                    @Touch.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTouch;
-                    @Touch.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTouch;
-                    @Touch.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTouch;
+                    @Position.started -= m_Wrapper.m_AndroidActionsCallbackInterface.OnPosition;
+                    @Position.performed -= m_Wrapper.m_AndroidActionsCallbackInterface.OnPosition;
+                    @Position.canceled -= m_Wrapper.m_AndroidActionsCallbackInterface.OnPosition;
+                    @Touch.started -= m_Wrapper.m_AndroidActionsCallbackInterface.OnTouch;
+                    @Touch.performed -= m_Wrapper.m_AndroidActionsCallbackInterface.OnTouch;
+                    @Touch.canceled -= m_Wrapper.m_AndroidActionsCallbackInterface.OnTouch;
+                    @Back.started -= m_Wrapper.m_AndroidActionsCallbackInterface.OnBack;
+                    @Back.performed -= m_Wrapper.m_AndroidActionsCallbackInterface.OnBack;
+                    @Back.canceled -= m_Wrapper.m_AndroidActionsCallbackInterface.OnBack;
                 }
-                m_Wrapper.m_UIActionsCallbackInterface = instance;
+                m_Wrapper.m_AndroidActionsCallbackInterface = instance;
                 if (instance != null)
                 {
                     @Position.started += instance.OnPosition;
@@ -172,14 +209,18 @@ namespace Assets.Scripts
                     @Touch.started += instance.OnTouch;
                     @Touch.performed += instance.OnTouch;
                     @Touch.canceled += instance.OnTouch;
+                    @Back.started += instance.OnBack;
+                    @Back.performed += instance.OnBack;
+                    @Back.canceled += instance.OnBack;
                 }
             }
         }
-        public UIActions @UI => new UIActions(this);
-        public interface IUIActions
+        public AndroidActions @Android => new AndroidActions(this);
+        public interface IAndroidActions
         {
             void OnPosition(InputAction.CallbackContext context);
             void OnTouch(InputAction.CallbackContext context);
+            void OnBack(InputAction.CallbackContext context);
         }
     }
 }

@@ -1,10 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id">
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_android_client_id,@string/default_web_client_id">
   <string name="gcm_defaultSenderId" translatable="false">47686229618</string>
   <string name="google_storage_bucket" translatable="false">footballpenalty-c1ba4.appspot.com</string>
   <string name="project_id" translatable="false">footballpenalty-c1ba4</string>
   <string name="google_api_key" translatable="false">AIzaSyDWWj17NjQTyoiyxrD9F3bcCPea6Vylfjw</string>
   <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDWWj17NjQTyoiyxrD9F3bcCPea6Vylfjw</string>
   <string name="google_app_id" translatable="false">1:47686229618:android:d93c3f8390cf54f920eceb</string>
+  <string name="default_android_client_id" translatable="false">47686229618-gftupsu1eposdg8iia4snmgvvf9g58pp.apps.googleusercontent.com</string>
   <string name="default_web_client_id" translatable="false">47686229618-13kvkgo6q86vc9rv89099237hp2rkuls.apps.googleusercontent.com</string>
 </resources>

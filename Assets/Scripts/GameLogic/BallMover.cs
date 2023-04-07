@@ -27,6 +27,7 @@ namespace Assets.Scripts.GameLogic
         public void Hit(Vector2 direction)
         {
             rb.AddForce(direction.normalized * power);
+            rb.angularVelocity = Vector2.SignedAngle(Vector2.up, direction) * 20;
         }
     }
 }
