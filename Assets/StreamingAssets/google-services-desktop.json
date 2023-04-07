@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "47686229618",
-    "project_id": "footballpenalty-c1ba4",
-    "storage_bucket": "footballpenalty-c1ba4.appspot.com"
+    "project_number": "238439557967",
+    "project_id": "samaf-e05f0",
+    "storage_bucket": "samaf-e05f0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:47686229618:android:d93c3f8390cf54f920eceb",
+        "mobilesdk_app_id": "1:238439557967:android:b5d0d9dfc990016e5eb33a",
         "android_client_info": {
-          "package_name": "com.SergeiZhuravlev.FootballPenalty"
+          "package_name": "goseplo.enneo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "47686229618-gftupsu1eposdg8iia4snmgvvf9g58pp.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.SergeiZhuravlev.FootballPenalty",
-            "certificate_hash": "3cd6110840439147ce920363eec34d5be327873e"
-          }
-        },
-        {
-          "client_id": "47686229618-13kvkgo6q86vc9rv89099237hp2rkuls.apps.googleusercontent.com",
+          "client_id": "238439557967-rknrrkgkmor823p9pvpfa116qc1b33ik.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDWWj17NjQTyoiyxrD9F3bcCPea6Vylfjw"
+          "current_key": "AIzaSyArUCMsKA9jVgimvdF_mpDNvifFFkIedt0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "47686229618-13kvkgo6q86vc9rv89099237hp2rkuls.apps.googleusercontent.com",
+              "client_id": "238439557967-rknrrkgkmor823p9pvpfa116qc1b33ik.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

